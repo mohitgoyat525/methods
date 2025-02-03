@@ -25,6 +25,12 @@ const FilterPractice = () => {
     setEmail("");
   };
 
+  const deleteItem = (index) => {
+    const updatedData = data.filter((_, i) => i !== index);
+    setData(updatedData);
+    localStorage.setItem("data", JSON.stringify(updatedData));
+  };
+
   const filteredData = data.filter(
     (item) =>
       item.name.includes(search) ||
@@ -101,6 +107,12 @@ const FilterPractice = () => {
                 <p className="text-lg font-semibold text-gray-800">
                   Email:- {item.email}
                 </p>
+                <button
+                  onClick={() => deleteItem(i)}
+                  className="bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 ease-linear duration-300 transition-all"
+                >
+                  Delete
+                </button>
               </div>
             ))
           )}
